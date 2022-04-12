@@ -6,6 +6,8 @@ import com.upstreamsystems.trainee.challenge1.model.Order;
 import com.upstreamsystems.trainee.challenge1.model.OrderSuggestion;
 import com.upstreamsystems.trainee.challenge1.utils.CSVReader;
 import java.util.List;
+
+import com.upstreamsystems.trainee.challenge1.utils.CSVReaderTester;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -33,10 +35,22 @@ public class OrderServiceTest {
     assertEquals(0, suggestions.size());
   }
 
-//  @Test
-//  public void test_finds_cheapest_product() throws Exception {
-//    OrderService service = new OrderServiceImpl();
-//    List<String> orderProducts = List.of("product1");
-//  }
+  @Test
+  public void test_discount_is_applied() throws Exception {
+    CSVReaderTester csvReaderTester = new CSVReaderTester("/productstest1.csv","/shopstest1.csv","/citiestest1.csv");
+    OrderService service = new OrderServiceImpl(csvReaderTester.getShops(),
+            csvReaderTester.getProductPrices(), csvReaderTester.getCities());
+
+    List<String> orderProducts = List.of("product1");
+
+    List<OrderSuggestion> orderSuggestions = service.calculate(new Order("user1",orderProducts));
+
+    int[] cost = {120,500,580};
+    int cnt = 0;
+    for (OrderSuggestion suggestion : orderSuggestions){
+      assertEquals(cost[cnt],suggestion.getTotalCost());
+      System.out.println(cnt++ + "=> " +suggestion);
+    }
+  }
 
 }
