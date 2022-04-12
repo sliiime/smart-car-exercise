@@ -51,13 +51,24 @@ public class OrderServiceImpl implements OrderService {
         //returned cost includes just the product prices
         List<OrderSuggestion> orderSuggestions = calculateSuggestions(order.getProductsNames());
 
-        ShippingCostCalculator shippingCostCalculator = new DefaultShippingCostCalculator();
+        LargeOrderShippingCostCalculator largeOrderShippingCostCalculator = new LargeOrderShippingCostCalculator();
+        DefaultShippingCostCalculator defaultShippingCostCalculator = new DefaultShippingCostCalculator();
+        PremiumShippingCostCalculator premiumShippingCostCalculator = new PremiumShippingCostCalculator();
+
+        ShippingCostCalculator shippingCostCalculator;
 
         //iterate the combinations and add shipping costs
-        for (OrderSuggestion suggestion : orderSuggestions)
+        for (OrderSuggestion suggestion : orderSuggestions) {
+            if (largeOrderShippingCostCalculator.isApllicable(suggestion, order))
+                shippingCostCalculator = largeOrderShippingCostCalculator;
+            else if (premiumShippingCostCalculator.isApllicable(suggestion, order))
+                shippingCostCalculator = premiumShippingCostCalculator;
+            else
+                shippingCostCalculator = defaultShippingCostCalculator;
+
             suggestion.setTotalCost(suggestion.getTotalCost() + shippingCostCalculator.calculateShippingCost(suggestion, shippingCostPerShop));
 
-
+        }
         //sort result by cost ascending
         orderSuggestions.sort(Comparator.comparingInt(OrderSuggestion::getTotalCost));
         //return result, limited to the specified size

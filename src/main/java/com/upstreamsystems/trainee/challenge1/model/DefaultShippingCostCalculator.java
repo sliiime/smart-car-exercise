@@ -6,9 +6,7 @@ import java.util.Map;
 public class DefaultShippingCostCalculator implements ShippingCostCalculator {
 
     @Override
-    public Integer calculateShippingCost(OrderSuggestion suggestion, Map<String,Integer> shippingCostPerShop){
-
-        if (suggestion.getTotalCost() > 100) return 0;
+    public Integer calculateShippingCost(OrderSuggestion suggestion, Map<String, Integer> shippingCostPerShop) {
 
         HashSet<String> shopSet = new HashSet<>(suggestion.getShopNames());
 
@@ -17,4 +15,10 @@ public class DefaultShippingCostCalculator implements ShippingCostCalculator {
 
         return totalShippingCost;
     }
+
+    @Override
+    public Boolean isApllicable(OrderSuggestion suggestion, Order order) {
+            return true;
+    }
+
 }

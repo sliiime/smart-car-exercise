@@ -8,8 +8,6 @@ public class PremiumShippingCostCalculator implements  ShippingCostCalculator {
     @Override
     public Integer calculateShippingCost(OrderSuggestion suggestion, Map<String,Integer> shippingCostPerShop){
 
-        if (suggestion.getTotalCost() > 100) return 0;
-
         HashSet<String> shopSet = new HashSet<>(suggestion.getShopNames());
 
         int totalShippingCost = 0;
@@ -18,5 +16,9 @@ public class PremiumShippingCostCalculator implements  ShippingCostCalculator {
         totalShippingCost /= shopSet.size();
 
         return totalShippingCost;
+    }
+    @Override
+    public Boolean isApllicable(OrderSuggestion suggestion,Order order){
+            return order.isPremium();
     }
 }
