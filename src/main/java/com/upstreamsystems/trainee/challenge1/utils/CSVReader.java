@@ -13,9 +13,9 @@ import java.util.stream.Stream;
  */
 public class CSVReader {
 
-  private final static String PRODUCTS_FILE = "/products.csv";
-  private final static String SHOPS_FILE = "/shops.csv";
-  private final static String CITIES_FILE = "/cities.csv";
+  private final static String PRODUCTS_FILE = "/productstest1.csv";
+  private final static String SHOPS_FILE = "/shopstest1.csv";
+  private final static String CITIES_FILE = "/citiestest1.csv";
 
   private static List<Shop> shops;
   private static List<ProductPrice> productPrices;

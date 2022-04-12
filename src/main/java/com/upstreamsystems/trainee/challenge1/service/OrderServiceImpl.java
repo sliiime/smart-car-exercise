@@ -4,7 +4,6 @@ import com.upstreamsystems.trainee.challenge1.model.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -59,9 +58,9 @@ public class OrderServiceImpl implements OrderService {
 
         //iterate the combinations and add shipping costs
         for (OrderSuggestion suggestion : orderSuggestions) {
-            if (largeOrderShippingCostCalculator.isApllicable(suggestion, order))
+            if (largeOrderShippingCostCalculator.isApplicable(suggestion, order))
                 shippingCostCalculator = largeOrderShippingCostCalculator;
-            else if (premiumShippingCostCalculator.isApllicable(suggestion, order))
+            else if (premiumShippingCostCalculator.isApplicable(suggestion, order))
                 shippingCostCalculator = premiumShippingCostCalculator;
             else
                 shippingCostCalculator = defaultShippingCostCalculator;

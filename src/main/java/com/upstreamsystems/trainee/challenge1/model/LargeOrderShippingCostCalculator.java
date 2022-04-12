@@ -10,7 +10,7 @@ public class LargeOrderShippingCostCalculator implements ShippingCostCalculator{
     }
 
     @Override
-    public Boolean isApllicable(OrderSuggestion suggestion,Order order){
+    public Boolean isApplicable(OrderSuggestion suggestion, Order order){
         return suggestion.getTotalCost() > 100;
     }
 

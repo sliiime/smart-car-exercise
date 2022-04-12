@@ -18,7 +18,7 @@ public class PremiumShippingCostCalculator implements  ShippingCostCalculator {
         return totalShippingCost;
     }
     @Override
-    public Boolean isApllicable(OrderSuggestion suggestion,Order order){
+    public Boolean isApplicable(OrderSuggestion suggestion, Order order){
             return order.isPremium();
     }
 }

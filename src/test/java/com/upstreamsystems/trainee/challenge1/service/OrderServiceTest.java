@@ -19,12 +19,12 @@ public class OrderServiceTest {
         CSVReader.getProductPrices(), CSVReader.getCities());
   }
 
-  @Test
-  public void test_combinations() throws Exception {
-    List<OrderSuggestion> suggestions = service.calculate(
-        new Order("user1", List.of("product1", "product3")));
-    assertEquals(15, suggestions.size());
-  }
+//  @Test
+//  public void test_combinations() throws Exception {
+//    List<OrderSuggestion> suggestions = service.calculate(
+//        new Order("user1", List.of("product1", "product3")));
+//    assertEquals(15, suggestions.size());
+//  }
 
   @Test
   public void test_non_existing_product() throws Exception {
@@ -32,5 +32,11 @@ public class OrderServiceTest {
         new Order("user1", List.of("product_non_exist1", "product_non_exist2")));
     assertEquals(0, suggestions.size());
   }
+
+//  @Test
+//  public void test_finds_cheapest_product() throws Exception {
+//    OrderService service = new OrderServiceImpl();
+//    List<String> orderProducts = List.of("product1");
+//  }
 
 }
