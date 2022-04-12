@@ -43,7 +43,7 @@ public class OrderServiceImpl implements OrderService {
   }
 
   /**
-   * Computes the order suggestions based on the in memoty mappings
+   * Computes the order suggestions based on the in memory mappings
    * @param order The given order
    * @return The order suggestions order by cost ascending
    */

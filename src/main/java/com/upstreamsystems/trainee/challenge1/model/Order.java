@@ -13,11 +13,25 @@ public final class Order {
   private final String username;
   //the names of the requested products
   private final List<String> productsNames;
+  //defines the way the cost of the order is calculated
+  private final OrderCalculator orderCalculator ;
+
 
   public Order(String username, List<String> productsNames) {
     this.username = username;
     this.productsNames = productsNames;
+    this.orderCalculator = (x) ->{
+      int sum = 0;
+      for (String productName : x.productsNames) sum +=
+    }
   }
+
+  public Order(String username, List<String> productNames, OrderCalculator orderCalculator){
+    this.username = username;
+    this.productsNames = productNames;
+    this.orderCalculator = orderCalculator;
+  }
+
 
   public String getUsername() {
     return username;
