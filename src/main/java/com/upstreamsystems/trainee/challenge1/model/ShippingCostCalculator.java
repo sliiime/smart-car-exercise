@@ -1,2 +1,8 @@
-package com.upstreamsystems.trainee.challenge1.model;public interface ShippingCostCalculator {
+package com.upstreamsystems.trainee.challenge1.model;
+
+import java.util.Map;
+
+public interface ShippingCostCalculator {
+
+    public Integer calculateShippingCost(OrderSuggestion suggestion, Map<String,Integer> shippingCostPerShop);
 }
